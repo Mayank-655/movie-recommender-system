@@ -6,6 +6,12 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Docker](https://img.shields.io/badge/docker-ready-blue.svg)
 
+## 🌐 Live Demo
+
+**🎬 [Try the Netflix-Style Dashboard →](https://znwqdxdrscbslsippw3mrp.streamlit.app/)**
+
+Experience the movie recommender with a beautiful Netflix-style interface!
+
 A comprehensive movie recommendation system with a **Netflix-style dashboard** using collaborative filtering and content-based filtering algorithms. Built with Python, FastAPI, and Streamlit.
 
 ## 🎯 Features
@@ -113,7 +119,7 @@ Visit: http://localhost:8000/docs
 streamlit run dashboard/app.py
 ```
 
-Visit: http://localhost:8501
+**Or try the live version**: [🌐 Live Dashboard](https://znwqdxdrscbslsippw3mrp.streamlit.app/)
 
 ## 🎨 Netflix-Style Dashboard
 

@@ -169,7 +169,12 @@ st.markdown("""
 def load_data():
     """Load movie data."""
     loader = MovieLensLoader()
-    ratings, movies, users = loader.load_all(download=False)
+    # Try to load, if fails, download automatically
+    try:
+        ratings, movies, users = loader.load_all(download=False)
+    except FileNotFoundError:
+        st.info("📥 Downloading dataset for the first time... This may take a minute.")
+        ratings, movies, users = loader.load_all(download=True)
     return ratings, movies, users
 
 @st.cache_resource
@@ -236,7 +241,16 @@ def main():
         models = load_models()
     except Exception as e:
         st.error(f"Error loading data: {e}")
-        st.info("Please run: python src/data_loader.py first")
+        st.info("📥 Attempting to download dataset automatically...")
+        try:
+            loader = MovieLensLoader()
+            ratings, movies, users = loader.load_all(download=True)
+            models = load_models()
+            st.success("✅ Dataset downloaded successfully! Please refresh the page.")
+            st.rerun()
+        except Exception as download_error:
+            st.error(f"Download failed: {download_error}")
+            st.info("Please wait a moment and refresh the page, or check your internet connection.")
         return
     
     # Sidebar (minimal, Netflix-style)
